@@ -1,0 +1,44 @@
+﻿@model UpdateOrderStatusViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "UpdatePaymentStatus";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-header text-white" style="background-color:#0b1e3d;">
+                <h5 class="mb-0"><i class="bi bi-credit-card"></i> Update Payment Status</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="UpdatePaymentStatus">
+                    <input type="hidden" asp-for="OrderId" />
+
+                    <div class="mb-3">
+                        <label asp-for="OrderStatusId" class="form-label fw-bold">Payment Method</label>
+                        <select class="form-select" asp-for="OrderStatusId" asp-items="@Model.OrderStatusList">
+                            <option value="">Select payment method</option>
+                        </select>
+                        <span asp-validation-for="OrderStatusId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="AllOrders" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Update
+                        </button>
+                    </div>
+
+                    @if (TempData["msg"] != null)
+                    {
+                        <div class="alert alert-info mt-3" role="alert">
+                            @TempData["msg"]
+                        </div>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+
+        <li class="nav-item nav-item-auth d-flex align-items-center">
+
+            <!-- أيقونة عربية التسوق -->
+            <a class="nav-link mb-0 ms-3" href="/Cart/GetUserCart" title="Shopping Cart">
+                <i class="bi bi-cart" style="font-size:1.2rem;"></i>
+                <span style="color:#ffd700; font-weight:bold;" id="CartCount">0</span>
+            </a>
+
+
+
+
+
+            <!-- اسم المستخدم -->
+            <a class="nav-link mb-0" asp-area="Identity" asp-page="/Account/Manage/Index">
+                Hello, @User.Identity.Name
+                @if (User.IsInRole("Admin"))
+                {
+                    <span>(Admin)</span>
+                }
+            </a>
+
+          
+
+            <!-- زر الخروج -->
+            <form class="d-inline ms-3 mb-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index","Home")">
+                <button type="submit" class="btn-logout nav-link">Logout</button>
+            </form>
+
+
+           
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

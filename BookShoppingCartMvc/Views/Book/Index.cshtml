@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Book>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Books";
+}
+
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header text-white" style="background-color:#0b1e3d;">
+        <h5 class="mb-0"><i class="bi bi-book"></i> Books</h5>
+    </div>
+
+    <div class="card-body">
+        <a asp-action="AddBook" asp-controller="Book" class="btn btn-primary mb-3">
+            <i class="bi bi-plus-lg"></i> Add More
+        </a>
+
+        @if (Model?.Any() == true)
+        {
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Image</th>
+                            <th>Book</th>
+                            <th>Author</th>
+                            <th>Genre</th>
+                            <th>Price ($)</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var book in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (string.IsNullOrEmpty(book.Images))
+                                    {
+                                        <img src="/Images/NoImages.jpg" class="img-thumbnail" style="width:80px; height:100px;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/Images/@book.Images" class="img-thumbnail" style="width:80px; height:100px;" />
+                                    }
+                                </td>
+                                <td>@book.BookName</td>
+                                <td>@book.AuthorName</td>
+                                <td>@book.Genre.GenreName</td>
+                                <td>$ @book.Price</td>
+                                <td class="text-center">
+                                    <a asp-action="UpdateBook" asp-controller="Book" asp-route-id="@book.Id" class="btn btn-sm btn-success mb-1">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+
+                                    <form asp-action="DeleteBook" asp-controller="Book" asp-route-id="@book.Id" method="post" style="display:inline" onsubmit="return confirm('Are you sure?');">
+                                        <button type="submit" class="btn btn-sm btn-danger mb-1">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <h5 class="text-center text-muted mt-3">No records found</h5>
+        }
+    </div>
+</div>
+
+<style>
+    /* إزالة أي تحريك للجدول */
+    table tr:hover,
+    table td {
+        background-color: inherit !important;
+        transition: none !important;
+    }
+
+    .table td, .table th {
+        padding: 0.75rem;
+        vertical-align: middle;
+    }
+
+
+   
+    img.book-img {
+        width: 90px; /* زيادة العرض */
+        height: 120px; /* زيادة الارتفاع */
+        object-fit: cover; /* تغطية كامل الإطار */
+        border-radius: 4px;
+    }
+</style>
+

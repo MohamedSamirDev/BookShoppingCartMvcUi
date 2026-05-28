@@ -1,0 +1,120 @@
+﻿@model Book_Genre_DisplayViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Filter & Search -->
+<form class="row g-3 align-items-center mb-4">
+    <div class="col-auto">
+        <select class="form-select" id="genreId" name="genreId">
+            <option selected> Genre </option>
+            @foreach (var genre in Model.Genres)
+            {
+                <option selected="@(genre.Id==Model.genreId)" value="@genre.Id">
+                    @genre.GenreName
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-auto">
+        <div class="d-flex align-items-center gap-3">
+
+            <!-- Search input -->
+            <input type="text" class="form-control" name="sterm"
+            value="@Model.sterm" placeholder="Search By Title"
+            style="width:220px;">
+
+            <!-- Search button -->
+            <button class="btn btn-search" type="submit">
+                <i class="bi bi-search"></i> Search
+            </button>
+
+            <!-- Reset button -->
+            <a href="/Home/Index" class="btn btn-search">
+                Reset
+            </a>
+
+        </div>
+    </div>
+
+
+
+    @* <a href="/Home/Index" class="btn btn-search" >Reset</a> *@
+
+
+
+</form>
+
+<!-- Books -->
+<div class="w-100 mt-4 d-flex flex-wrap justify-content-center">
+
+    @foreach (var book in Model.Books)
+    {
+        <div class="card mx-2 mb-4 text-center" style="width:19rem;">
+
+
+            <!-- Image -->
+            @if (string.IsNullOrEmpty(book.Images))
+            {
+                <img src="/Images/NoImages.jpg" class="book-img" />
+            }
+            else
+            {
+                <img src="/Images/@book.Images" class="book-img" />
+            }
+
+            <div class="card-body d-flex flex-column">
+                <h6 class="card-title">@book.BookName</h6>
+
+                <p class="card-text small mb-2">
+                    Genre: @book.GenreName<br />
+                    Author: @book.AuthorName<br />
+                    Price:$@book.Price
+                </p>
+                @* <b>@book.Quantity</b> *@
+                @if (book.Quantity > 0)
+                {
+                    <button type="button" onclick="add(@book.Id)" class="btn btn-add-to-cart mt-auto">
+                        Add To Cart
+                    </button>
+                }
+                else
+                {
+                    <span style="border:1px solid ;
+                    padding:5px 8px; color:red;border-radius:5px;">Out of Stock</span>
+                
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{
+
+        <script>
+             async function add(bookId) {
+                 try {
+                     const response = await fetch(`/Cart/AddItem?BookId=${bookId}&Quantity=1`, {
+                         credentials: "same-origin"
+                     });
+
+                     // 👈 لو اتحول على صفحة Login
+                     if (response.redirected) {
+                         window.location.href = response.url;
+                         return;
+                     }
+
+                     if (!response.ok) return;
+
+                     const result = await response.json();
+                     document.getElementById("CartCount").innerText = result;
+
+                 } catch (err) {
+                     console.error(err);
+                 }
+             }
+    </script>
+
+
+
+}

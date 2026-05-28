@@ -1,0 +1,43 @@
+﻿@page
+@model EmailModel
+@{
+    Layout = "/Views/Shared/_AccountLayout.cshtml";
+    ViewData["Title"] = "Manage Email";
+    ViewData["ActivePage"] = "Email";
+}
+
+<div class="account-card">
+    <h3 class="mb-3 text-center">📧 Manage Email</h3>
+    <p class="text-muted text-center mb-4">Update your email and account security settings.</p>
+
+    <partial name="_StatusMessage" for="StatusMessage" />
+
+    <form id="email-form" method="post">
+        <div asp-validation-summary="All" class="text-danger mb-3" role="alert"></div>
+
+        @if (Model.IsEmailConfirmed)
+        {
+            <div class="form-floating mb-3 input-group">
+                <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
+                <span class="input-group-text text-success">✓</span>
+                <label asp-for="Email" class="form-label"></label>
+            </div>
+        }
+        else
+        {
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" placeholder="Please enter your email." disabled />
+                <label asp-for="Email" class="form-label"></label>
+                <button type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link mt-2">Send verification email</button>
+            </div>
+        }
+
+        <div class="form-floating mb-3">
+            <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" placeholder="Enter new email" />
+            <label asp-for="Input.NewEmail" class="form-label"></label>
+            <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 btn-lg mt-3">Change Email</button>
+    </form>
+</div>

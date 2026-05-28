@@ -1,0 +1,207 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+.book-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.btn-add-to-cart {
+    background-color: #1a2e5b;
+    color: #fff;
+    border: none;
+}
+
+    .btn-add-to-cart:hover {
+        background-color: #162748;
+        color: #ffd700;
+    }
+
+.btn-search {
+    background-color: #1a2e5b;
+    color: #fff;
+    border: none;
+}
+
+    .btn-search:hover {
+        background-color: #162748;
+        color: #ffd700;
+    }
+
+/* ====== Hover Effect ?????? ====== */
+.card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+/* ============================================================
+   Shopping Cart Table Styling - NAVBAR COLOR MATCH
+   ============================================================ */
+
+/* الجدول الأساسي */
+/* Container for all cart cards */
+/* Container for all cart cards */
+.cart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+/* Individual cart card */
+.cart-card {
+    display: flex;
+    gap: 20px;
+    width: 470px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    min-height: 190px; /* أكبر شوية */
+}
+
+    .cart-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+/* Book image */
+.cart-book-img {
+    width: 130px;
+    height: 180px; /* أكبر شوية */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Card body */
+.cart-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+    /* Book title */
+    .cart-card-body h5 {
+        margin: 0 0 8px 0;
+        font-weight: 600;
+    }
+
+    /* Small text */
+    .cart-card-body p.small {
+        font-size: 14px;
+        color: #333333;
+        margin: 0;
+    }
+
+/* Actions */
+.cart-card-actions {
+    margin-top: 10px;
+}
+
+    .cart-card-actions .btn {
+        width: 35px;
+        height: 35px;
+        padding: 0;
+        font-weight: bold;
+        border-radius: 6px;
+        transition: transform 0.2s;
+    }
+
+        .cart-card-actions .btn:hover {
+            transform: scale(1.1);
+        }
+
+/* Total Price Card + Checkout Container */
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* يبقى على الشمال */
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Total price card */
+.total-price-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #1a2e5b; /* كحلي غامق */
+    color: #ffd700; /* نص دهبي */
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+/* كلمة Total Price فوق */
+.total-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* الرقم تحت الكلمة */
+.total-value {
+    font-size: 18px;
+}
+
+/* Checkout button */
+.checkout-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    font-weight: 600;
+    color: #ffd700; /* دهبي */
+    background-color: #1a2e5b; /* كحلي غامق مش قوي */
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+    .checkout-btn:hover {
+        background-color: #0d1b38; /* أغمق شوية */
+        color: #ffea00; /* دهبي أكثر لمعان */
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+/* Empty cart message */
+#cartEmptyMessage {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1a2e5b;
+    margin-top: 50px;
+}

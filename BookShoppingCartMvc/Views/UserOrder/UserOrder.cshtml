@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<div class="container mt-3">
+    <a href="/Identity/Account/Manage" class="btn btn-primary mb-3">Back</a>
+
+    <h3 class="mb-4">My Orders</h3>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="accordion" id="ordersAccordion">
+            @foreach (var order in Model)
+            {
+                <div class="accordion-item mb-3 shadow-sm border rounded">
+                    <h2 class="accordion-header" id="heading@order.Id">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@order.Id" aria-expanded="false" aria-controls="collapse@order.Id">
+                            <span class="me-3 fw-bold">Order Date:</span> @order.CreateDate.ToString("dd-MM-yyyy")
+                            <span class="ms-4 badge bg-info text-dark">@order.OrderStatus.StatusName</span>
+                        </button>
+                    </h2>
+
+                    <div id="collapse@order.Id" class="accordion-collapse collapse" aria-labelledby="heading@order.Id" data-bs-parent="#ordersAccordion">
+                        <div class="accordion-body">
+                            @if (order.OrderDetails != null && order.OrderDetails.Count > 0)
+                            {
+                                <div class="table-responsive">
+                                    <table class="table align-middle text-center mb-3">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Book</th>
+                                                <th>Image</th>
+                                                <th>Genre</th>
+                                                <th>Unit Price</th>
+                                                <th>Total Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in order.OrderDetails)
+                                            {
+                                                <tr>
+                                                    <td>@item.Book.BookName</td>
+                                                    <td>
+                                                        <img src="@(string.IsNullOrEmpty(item.Book.Images) ? "/Images/NoImages.jpg" : "/Images/" + item.Book.Images)" class="img-thumbnail" style="width:90px; height:120px; object-fit:cover;" />
+                                                    </td>
+                                                    <td>@item.Book.Genre.GenreName</td>
+                                                    <td>$@item.Book.Price x @item.Quantity</td>
+                                                    <td>$@(item.Book.Price * item.Quantity)</td>
+                                                    <td>
+                                                        <a class="btn btn-sm btn-success mx-1" href="/Cart/AddItem?BookId=@item.BookId&&redirect=1">+</a>
+                                                        <a class="btn btn-sm btn-danger mx-1" href="/Cart/RemoveItem?BookId=@item.BookId">-</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="text-end">
+                                    <h5>Total Price: $@(order.OrderDetails.Select(item => item.Book.Price * item.Quantity).Sum())</h5>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h5 class="text-center mt-4 text-muted">No Orders</h5>
+    }
+</div>
+
+<style>
+    .accordion-button {
+        background-color: #f8f9fa;
+        color: #0b1e3d;
+        font-weight: 500;
+    }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #0b1e3d;
+            color: #ffffff;
+        }
+
+        .accordion-button::after {
+            filter: invert(1);
+        }
+
+    table td, table th {
+        vertical-align: middle;
+    }
+</style>

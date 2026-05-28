@@ -1,0 +1,13 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using BookShoppingCartMvc.Models;
+global using BookShoppingCartMvc.Constants;
+global using BookShoppingCartMvc.Data;
+global using BookShoppingCartMvc.Ropository;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Identity;
+global using BookShoppingCartMvc.ViewModel;
+global using Microsoft.AspNetCore.Mvc;
+global using System.Diagnostics;
+global using Microsoft.AspNetCore.Authorization;
+global using BookShoppingCartMvc.Shared;
