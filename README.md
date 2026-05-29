@@ -1,26 +1,51 @@
 📚 Book Shopping Cart — ASP.NET Core MVC
 
-A full-featured online bookstore built with ASP.NET Core MVC, featuring shopping cart, order management, stock tracking, and role-based access control for Admins and Users.
+A full-featured online bookstore built with ASP.NET Core MVC, featuring shopping cart, order management,
+stock tracking, and role-based access control for Admins and Users.
 
-🛠️ Tech Stack
-ASP.NET Core MVC 9
-Entity Framework Core 9
-SQL Server (LocalDB / MSSQL)
-ASP.NET Core Identity
-Bootstrap 5
+| Technology            | Version         |
+| --------------------- | --------------- |
+| ASP.NET Core MVC      | 9.0             |
+| Entity Framework Core | 9.0             |
+| SQL Server            | LocalDB / MSSQL |
+| ASP.NET Core Identity | 9.0             |
+| Bootstrap             | 5               |
 
+🚀 Getting Started
+Prerequisites
+.NET 9 SDK
+SQL Server or LocalDB
+Visual Studio 2022 / VS Code
 
-🚀 Features
+Setup
+git clone https://github.com/your-username/BookShoppingCartMvc.git
+# Update connection string in appsettings.json
+dotnet ef database update
+dotnet run
+
+👥 Roles
+| Role  | Description                                |
+| ----- | ------------------------------------------ |
+| Admin | Full access (books, genres, stock, orders) |
+| User  | Browse books, cart, checkout, view orders  |
+
+🔐 Authentication & Authorization
+Implemented using ASP.NET Core Identity (Microsoft Identity System)
+User registration and login handled by Identity framework
+Role-based access control (Admin / User)
+Secure authentication with built-in security features
+
+✅ Features
 🔐 Authentication & Authorization using ASP.NET Core Identity
 👥 Role-Based Access Control (Admin / User)
-📖 Browse books with search and genre filtering
+📖 Browse books with search & genre filtering
 🛒 Shopping cart (Add / Remove / Quantity management)
-📦 Checkout system with order creation
+📦 Checkout flow with order creation
 📉 Automatic stock deduction after purchase
-🧾 Order history for users
-🖼️ Image upload for book covers
+🧾 User order history
+🖼️ Book cover image upload
 📊 Admin dashboard for managing books, genres, stock, and orders
-🌱 Database seeding for roles and default admin user
+🌱 Auto seed roles and admin user on startup
 
 🧠 Architecture
 N-Tier Architecture
@@ -29,26 +54,38 @@ DTOs
 Dependency Injection
 Clean Code Principles
 
-🗃️ Database Relationships
-Users (Identity) → Authentication & system access
-ShoppingCarts → CartDetails → Books → Each user has a cart with multiple books
-Orders → OrderDetails → Books → Each order contains multiple books with quantities
-Books → Genres → Each book belongs to one genre
-Stocks → Books → Each book has stock tracking
+📋 Pages & Routes
+| Route | Description  |
+| ----- | ------------ |
+| `/`   | Browse books |
 
-⚙️ Getting Started
-git clone https://github.com/your-username/BookShoppingCartMvc.git
-# Update connection string in appsettings.json
-dotnet ef database update
-dotnet run
+🛒 Cart (Auth required)
+| Route               | Description |
+| ------------------- | ----------- |
+| `/Cart/AddItem`     | Add book    |
+| `/Cart/RemoveItem`  | Remove book |
+| `/Cart/GetUserCart` | View cart   |
+| `/Cart/Checkout`    | Place order |
 
-👥 Roles
-Role	Permissions
-Admin	Manage books, genres, stock, orders
-User	Browse books, cart, checkout, view orders
+📦 Orders
+| Route                  | Description |
+| ---------------------- | ----------- |
+| `/UserOrder/UserOrder` | User orders |
 
-📌 Note
-This project demonstrates backend and full-stack development skills using ASP.NET Core MVC following clean architecture principles.
+📚 Admin
+| Route                       | Description   |
+| --------------------------- | ------------- |
+| `/Book/Index`               | Manage books  |
+| `/Genre/Index`              | Manage genres |
+| `/Stock/Index`              | Manage stock  |
+| `/AdminOperation/AllOrders` | Manage orders |
+
+🗃️ Database Schema
+Users (Identity)
+├── ShoppingCarts → CartDetails → Books
+├── Orders → OrderDetails → Books
+├── Books → Genres
+└── Stocks → Books
 
 👨‍💻 Author
 Mohamed Samir
