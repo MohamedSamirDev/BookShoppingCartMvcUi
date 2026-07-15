@@ -1,91 +1,147 @@
-📚 Book Shopping Cart — ASP.NET Core MVC
+# 📚 Book Shopping Cart — ASP.NET Core MVC
 
-A full-featured online bookstore built with ASP.NET Core MVC, featuring shopping cart, order management,
-stock tracking, and role-based access control for Admins and Users.
+A complete online bookstore built with **ASP.NET Core 9 MVC**, featuring secure authentication, shopping cart management, order processing, inventory tracking, and an admin dashboard.
 
-| Technology            | Version         |
-| --------------------- | --------------- |
-| ASP.NET Core MVC      | 9.0             |
-| Entity Framework Core | 9.0             |
-| SQL Server            | LocalDB / MSSQL |
-| ASP.NET Core Identity | 9.0             |
-| Bootstrap             | 5               |
+---
 
-🚀 Getting Started
-Prerequisites
-.NET 9 SDK
-SQL Server or LocalDB
-Visual Studio 2022 / VS Code
+## 🎥 Project Demo
 
-Setup
-git clone https://github.com/your-username/BookShoppingCartMvc.git
-# Update connection string in appsettings.json
+Watch the full project walkthrough here:
+
+**▶️ Demo Video:** [Watch Here](https://drive.google.com/file/d/1uUk7aRHsDxnPJRJ3fNEhaEhxvtgSEebA/view?usp=drivesdk)
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology | Version |
+|------------|---------|
+| ASP.NET Core MVC | 9.0 |
+| Entity Framework Core | 9.0 |
+| SQL Server | LocalDB / MSSQL |
+| ASP.NET Core Identity | 9.0 |
+| Bootstrap | 5 |
+| HTML5 | Latest |
+| CSS3 | Latest |
+| JavaScript | ES6 |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- .NET 9 SDK
+- SQL Server or LocalDB
+- Visual Studio 2022 / VS Code
+
+### Setup
+
+```bash
+git clone https://github.com/MohamedSamirDev/BookShoppingCartMvcUi.git
+
+cd BookShoppingCartMvcUi
+
 dotnet ef database update
+
 dotnet run
+```
 
-👥 Roles
-| Role  | Description                                |
-| ----- | ------------------------------------------ |
-| Admin | Full access (books, genres, stock, orders) |
-| User  | Browse books, cart, checkout, view orders  |
+> **Note:** Update the connection string in `appsettings.json` before running the project.
 
-🔐 Authentication & Authorization
-Implemented using ASP.NET Core Identity (Microsoft Identity System)
-User registration and login handled by Identity framework
-Role-based access control (Admin / User)
-Secure authentication with built-in security features
+---
 
-✅ Features
-🔐 Authentication & Authorization using ASP.NET Core Identity
-👥 Role-Based Access Control (Admin / User)
-📖 Browse books with search & genre filtering
-🛒 Shopping cart (Add / Remove / Quantity management)
-📦 Checkout flow with order creation
-📉 Automatic stock deduction after purchase
-🧾 User order history
-🖼️ Book cover image upload
-📊 Admin dashboard for managing books, genres, stock, and orders
-🌱 Auto seed roles and admin user on startup
+## 👥 Roles
 
-🧠 Architecture
-N-Tier Architecture
-Repository Pattern
-DTOs
-Dependency Injection
-Clean Code Principles
+| Role | Description |
+|------|-------------|
+| **Admin** | Manage books, genres, stock, orders, and access the admin dashboard. |
+| **User** | Browse books, manage the shopping cart, complete checkout, and view order history. |
 
-📋 Pages & Routes
-| Route | Description  |
-| ----- | ------------ |
-| `/`   | Browse books |
+---
 
-🛒 Cart (Auth required)
-| Route               | Description |
-| ------------------- | ----------- |
-| `/Cart/AddItem`     | Add book    |
-| `/Cart/RemoveItem`  | Remove book |
-| `/Cart/GetUserCart` | View cart   |
-| `/Cart/Checkout`    | Place order |
+## 🔐 Authentication & Authorization
 
-📦 Orders
-| Route                  | Description |
-| ---------------------- | ----------- |
-| `/UserOrder/UserOrder` | User orders |
+Authentication and authorization are implemented using **ASP.NET Core Identity**.
 
-📚 Admin
-| Route                       | Description   |
-| --------------------------- | ------------- |
-| `/Book/Index`               | Manage books  |
-| `/Genre/Index`              | Manage genres |
-| `/Stock/Index`              | Manage stock  |
-| `/AdminOperation/AllOrders` | Manage orders |
+- User Registration & Login
+- Secure Password Hashing
+- Role-Based Authorization (Admin / User)
+- ASP.NET Core Identity Security
 
-🗃️ Database Schema
-Users (Identity)
-├── ShoppingCarts → CartDetails → Books
-├── Orders → OrderDetails → Books
-├── Books → Genres
-└── Stocks → Books
+---
 
-👨‍💻 Author
-Mohamed Samir
+## ✅ Features
+
+- 🔐 Authentication & Authorization using ASP.NET Core Identity
+- 👥 Role-Based Access Control (Admin / User)
+- 📚 Browse books with search and genre filtering
+- 🛒 Shopping Cart Management
+- ➕ Add / Remove items from the cart
+- 🔄 Update item quantity
+- 📦 Checkout process with order creation
+- 📉 Automatic stock deduction after purchase
+- 🧾 User order history
+- 🖼️ Book cover image upload
+- 📚 Book Management
+- 🏷️ Genre Management
+- 📦 Stock Management
+- 📊 Admin Dashboard
+- 🌱 Automatic database seeding for roles and admin user
+
+---
+
+## 🧠 Architecture
+
+This project follows modern ASP.NET Core development practices:
+
+- N-Tier Architecture
+- Repository Pattern
+- Dependency Injection
+- Entity Framework Core
+- ASP.NET Core Identity
+- Clean Code Principles
+
+---
+
+## 📂 Project Structure
+
+```text
+BookShoppingCartMvcUi
+│
+├── Controllers
+├── Models
+├── Repositories
+├── Data
+├── DTOs
+├── Views
+├── wwwroot
+└── Program.cs
+```
+
+---
+
+## 🚀 Future Improvements
+
+- 💳 Payment Gateway Integration
+- ❤️ Wishlist
+- ⭐ Product Reviews & Ratings
+- 📧 Email Notifications
+- 🐳 Docker Support
+- 🧪 Unit Testing
+
+---
+
+## 👨‍💻 Author
+
+**Mohamed Samir**
+
+Junior .NET Backend Developer
+
+- 🐙 GitHub: https://github.com/MohamedSamirDev
+- 💼 LinkedIn: https://www.linkedin.com/in/mohamed-samir-4014a1311/
+- 📧 Email: mohamedsamir6101@gmail.com
+
+---
+
+⭐ If you found this project helpful, consider giving it a **Star** on GitHub!
