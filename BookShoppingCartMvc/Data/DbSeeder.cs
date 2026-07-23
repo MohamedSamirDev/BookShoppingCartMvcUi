@@ -25,7 +25,7 @@ namespace BookShoppingCartMvc.Data
 
             //  Seed Admin User
             var adminUsername = "Mohamed Samir";
-            var adminEmail = "mohamedsamir6101@gmail.com";
+            var adminEmail = "mohamedsamir@gmail.com";
             var adminPassword = "qweasd123";
 
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
