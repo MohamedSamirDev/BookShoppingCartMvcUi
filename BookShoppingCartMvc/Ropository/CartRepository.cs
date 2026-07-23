@@ -100,7 +100,7 @@
                    CartItem.Quantity=CartItem.Quantity-1;
                 }
                  _context.SaveChanges();              
-            }catch (Exception ex) { }                 
+            }catch (Exception ex) {Console.WriteLine($"Error: {ex.Message}"); }                 
             var CartItemCount = await GetCartItemCount(UserId);
             return CartItemCount;
         }
