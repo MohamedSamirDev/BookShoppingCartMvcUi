@@ -39,11 +39,11 @@ Watch the full project walkthrough here:
 
 ```bash
 git clone https://github.com/MohamedSamirDev/BookShoppingCartMvcUi.git
+cd BookShoppingCartMvcUi/BookShoppingCartMvc
 
-cd BookShoppingCartMvcUi
-
+dotnet restore
+dotnet tool install --global dotnet-ef   
 dotnet ef database update
-
 dotnet run
 ```
 
